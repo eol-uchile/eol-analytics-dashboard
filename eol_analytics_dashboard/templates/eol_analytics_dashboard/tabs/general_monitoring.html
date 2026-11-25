@@ -1,0 +1,40 @@
+## mako
+<%! from django.utils.translation import ugettext as _ %>
+<header class="tab-header">
+    <h2 class="tab-title">${_('Monitoreo general')}</h2>
+    <div class="tab-intro">
+        <p>${_('Este es un prototipo del módulo de analíticas de aprendizaje de la plataforma EOL. Los datos presentados son de cursos reales que tienen componentes en la plataforma.')}</p>
+        <p>${_("El proyecto de validación tecnológica del sistema, previa a su implementación en la plataforma en operación, ha sido financiado por la Vicerrectoría de Investigación y Desarrollo (VID) por medio del concurso CVTUCH'25.")}</p>
+        <p>${_('Para dudas o propuestas de mejora, puedes escribir a')} <a href="mailto:csaintpierre@uchile.cl">csaintpierre@uchile.cl</a></p>
+    </div>
+</header>
+
+<div class="srl-charts-wrapper">
+
+    <section class="chart-panel" id="panel-completitud-acumulada">
+        <div class="chart-header">
+            <h3 class="chart-title">${_('Completitud acumulada')}</h3>
+        </div>
+        <div class="chart-description">
+            <p>${_('Este gráfico muestra el porcentaje de actividades que los estudiantes han completado en EOL. La completitud depende del tipo de contenido:')}</p>
+            <ul>
+                <li>${_('Evaluaciones → responder evaluación')}</li>
+                <li>${_('Videos → llegar al 95% del video')}</li>
+                <li>${_('Páginas de contenido → llegar hasta el final de la página')}</li>
+            </ul>
+            <p>${_('El porcentaje se calcula semana a semana sobre el total de materiales del curso, pudiendo haber semanas con mayor o menor cantidad de actividades.')}</p>
+        </div>
+
+    </section>
+
+    <section class="chart-panel" id="panel-tiempo-acumulado">
+        <div class="chart-header">
+            <h3 class="chart-title">${_('Tiempo acumulado')}</h3>
+        </div>
+        <div class="chart-description">
+            <p>${_('Este gráfico muestra el número de horas que los estudiantes han interactuado con la plataforma EOL, calculado como la suma del tiempo de las sesiones de estudio. La duración de estas sesiones corresponde al tiempo invertido en actividades consecutivas que no se distancian por más de 60 minutos entre sí. Cada docente debe interpretar esta información de acuerdo con cómo haya diseñado el curso en primera instancia, y verificar si el comportamiento de los estudiantes es similar a lo esperado o requiere una revisión.')}</p>
+        </div>
+
+    </section>
+
+</div>

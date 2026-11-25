@@ -1,0 +1,20 @@
+## mako
+<%! from django.utils.translation import ugettext as _ %>
+<header class="tab-header">
+    <h2 class="tab-title">${_('Videos')}</h2>
+</header>
+
+<div class="srl-charts-wrapper">
+
+    <section class="chart-panel" id="panel-visualizacion-videos">
+        <div class="chart-header">
+            <h3 class="chart-title">${_('Visualización de videos')}</h3>
+        </div>
+        <div class="chart-description">
+            <p>${_('En la parte superior de este gráfico se observa la distribución del porcentaje de visualización entre los estudiantes que vieron al menos parte del video. La distribución no considera a los estudiantes que no lo vieron.')}</p>
+            <p>${_('La parte inferior muestra la proporción de estudiantes que visualizaron al menos una parte del video. El color representa el promedio de interacciones (play, pausa y cambio de posición). Esta es una medida de qué tan activamente interactuaron con el recurso.')}</p>
+        </div>
+
+    </section>
+
+</div>

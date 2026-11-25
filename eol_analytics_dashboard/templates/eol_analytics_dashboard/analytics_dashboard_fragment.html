@@ -1,0 +1,93 @@
+## mako
+<%! from django.utils.translation import ugettext as _ %>
+<%namespace name='static' file='/static_content.html'/>
+<%block name="bodyclass">view-in-course</%block>
+<%block name="pagetitle">${_('Analtica')}</%block>
+<%inherit file="/main.html" />
+
+<%block name="headextra">
+    <%static:css group='style-course'/>
+    <link rel="stylesheet" type="text/css" href="${static.url('eol_analytics_dashboard/css/analytics_dashboard.css')}">
+    <link rel="stylesheet" type="text/css" href="${static.url('eol_analytics_dashboard/css/analytics_dashboard_tabs.css')}">
+</%block>
+
+<%include file="/courseware/course_navigation.html" args="active_page='eol_analytics_dashboard'" />
+
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <h2 class="hd hd-2 mt-0">${_('Analítica')}</h2>
+    <div class="eol-dashboard" id="eol-dashboard">
+
+        <div class="eol-tabs" role="tablist" aria-label="${_('Secciones del análisis')}">
+            <button type="button" role="tab" class="eol-tab-btn active"
+                    id="tab-general_monitoring"
+                    aria-controls="tabpanel-general_monitoring"
+                    aria-selected="true"
+                    data-tab="general_monitoring"
+                    data-script="${static.url('eol_analytics_dashboard/js/tabs/general_monitoring.js')}">
+                ${_('Monitoreo general')}
+            </button>
+            <button type="button" role="tab" class="eol-tab-btn"
+                    id="tab-activity_per_week"
+                    aria-controls="tabpanel-activity_per_week"
+                    aria-selected="false"
+                    data-tab="activity_per_week"
+                    data-script="${static.url('eol_analytics_dashboard/js/tabs/activity_per_week.js')}">
+                ${_('Actividad por semana')}
+            </button>
+            <button type="button" role="tab" class="eol-tab-btn"
+                    id="tab-activity_per_module"
+                    aria-controls="tabpanel-activity_per_module"
+                    aria-selected="false"
+                    data-tab="activity_per_module"
+                    data-script="${static.url('eol_analytics_dashboard/js/tabs/activity_per_module.js')}">
+                ${_('Actividad por módulo')}
+            </button>
+            <button type="button" role="tab" class="eol-tab-btn"
+                    id="tab-videos"
+                    aria-controls="tabpanel-videos"
+                    aria-selected="false"
+                    data-tab="videos"
+                    data-script="${static.url('eol_analytics_dashboard/js/tabs/videos.js')}">
+                ${_('Videos')}
+            </button>
+        </div>
+
+        <section class="eol-tab-panel" role="tabpanel"
+                id="tabpanel-general_monitoring"
+                aria-labelledby="tab-general_monitoring"
+                data-tab="general_monitoring"
+
+            ${ general_monitoring_fragment | n }
+        </section>
+
+        <section class="eol-tab-panel" role="tabpanel"
+                id="tabpanel-activity_per_week"
+                aria-labelledby="tab-activity_per_week"
+                data-tab="activity_per_week"
+
+                hidden>
+            ${ activity_per_week_fragment | n }
+        </section>
+
+        <section class="eol-tab-panel" role="tabpanel"
+                id="tabpanel-activity_per_module"
+                aria-labelledby="tab-activity_per_module"
+                data-tab="activity_per_module"
+
+                hidden>
+            ${ activity_per_module_fragment | n }
+        </section>
+
+        <section class="eol-tab-panel" role="tabpanel"
+                id="tabpanel-videos"
+                aria-labelledby="tab-videos"
+                data-tab="videos"
+
+                hidden>
+            ${ videos_fragment | n }
+        </section>
+    </div>
+</main>
+
+<script type="text/javascript" src="${static.url('eol_analytics_dashboard/js/analytics_dashboard.js')}"></script>

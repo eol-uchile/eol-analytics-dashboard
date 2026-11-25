@@ -1,0 +1,30 @@
+## mako
+<%! from django.utils.translation import ugettext as _ %>
+<header class="tab-header">
+    <h2 class="tab-title">${_('Actividad por módulo')}</h2>
+</header>
+
+<div class="srl-charts-wrapper">
+
+    <section class="chart-panel" id="panel-dedicacion-seccion">
+        <div class="chart-header">
+            <h3 class="chart-title">${_('Dedicación por sección')}</h3>
+        </div>
+        <div class="chart-description">
+            <p>${_('El gráfico muestra la distribución del tiempo dedicado (en horas) por las y los estudiantes en cada sección del curso, independientemente del momento en que hayan accedido a ella. Los módulos pueden usarse como filtro para ver el gráfico 3.2.')}</p>
+        </div>
+
+    </section>
+
+    <section class="chart-panel" id="panel-dedicacion-calificaciones-subseccion">
+        <div class="chart-header">
+            <h3 class="chart-title">${_('Dedicación y calificaciones por subsección')}</h3>
+        </div>
+        <div class="chart-description">
+            <p>${_('Este gráfico muestra, en la parte superior, el tiempo dedicado (en minutos) por las y los estudiantes a cada subsección del curso. En la esquina superior izquierda puede filtrarse el gráfico para visualizar los módulos individualmente; de igual forma, se puede hacer doble clic en un módulo del gráfico 3.1 para lograr el mismo efecto.')}</p>
+            <p>${_('La parte inferior del gráfico muestra el promedio de calificación obtenido por los estudiantes en cada subsección evaluada, incluyendo el total de estudiantes (incluso a quienes no rindieron esa evaluación). Al posicionar el cursor sobre cada barra se puede ver la tasa de respuesta que tuvo cada evaluación; esto también se refleja en el color de las barras: las de menor tasa de respuesta son más claras.')}</p>
+        </div>
+
+    </section>
+
+</div>
