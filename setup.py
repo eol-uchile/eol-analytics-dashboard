@@ -13,8 +13,10 @@ setuptools.setup(
     package_data={
         "eol_analytics_dashboard": [
             "templates/eol_analytics_dashboard/*.html",
+            "templates/eol_analytics_dashboard/tabs/*.html",
             "static/eol_analytics_dashboard/css/*.css",
             "static/eol_analytics_dashboard/js/*.js",
+            "static/eol_analytics_dashboard/js/tabs/*.js",
         ],
     },
     classifiers=[
