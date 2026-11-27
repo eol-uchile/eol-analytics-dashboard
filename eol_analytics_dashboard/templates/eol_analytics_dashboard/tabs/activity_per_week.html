@@ -1,5 +1,22 @@
 ## mako
-<%! from django.utils.translation import ugettext as _ %>
+<%!
+    from django.utils.translation import ugettext as _
+    from openedx.core.djangolib.js_utils import dump_js_escaped_json
+%>
+<%namespace name='static' file='/static_content.html'/>
+<%
+    ## Data for the box plot "Dedicación semanal" ({"weeks": [...]}).
+    ## It comes from the Django view context: weekly_dedication_data
+    activity_per_week_config = {
+        'weeklyDedicationData': context.get('weekly_dedication_data', None),
+    }
+%>
+## JSON block read by js/tabs/activity_per_week.js. The script URLs go in data attributes
+## because static.url() must be used as an expression (${...}), not inside a python block.
+<script type="application/json" id="activity_per_week_config"
+        data-d3-src="https://cdn.jsdelivr.net/npm/d3@7.9/dist/d3.min.js"
+        data-chart-data-src="${static.url('eol_analytics_dashboard/js/charts/chart_data_source.js')}"
+        data-box-plot-src="${static.url('eol_analytics_dashboard/js/charts/box_plot_chart.js')}">${activity_per_week_config | n, dump_js_escaped_json}</script>
 <header class="tab-header">
     <h2 class="tab-title">${_('Actividad por semana')}</h2>
 </header>
@@ -13,7 +30,7 @@
         <div class="chart-description">
             <p>${_('Este gráfico muestra los minutos que las y los estudiantes dedican semanalmente a trabajar en el curso en la plataforma EOL. Esto considera todas las actividades realizadas (evaluaciones, visualización de videos en la plataforma, lectura, entre otras).')}</p>
         </div>
-
+        ${chart_bodies['dedicacion-semanal'] | n}
     </section>
 
     <section class="chart-panel" id="panel-dedicacion-tipo-actividad">
@@ -24,7 +41,7 @@
             <p>${_('Este gráfico muestra los minutos (mediana) que las y los estudiantes han dedicado a cada tipo de contenido. Estos pueden ser: interactuar con videos, responder evaluaciones, participar en foros o revisar otro tipo de contenidos.')}</p>
             <p>${_('El tiempo de interacción con los videos incluye todo el tiempo que el estudiante dedica al material, incluidas las pausas y los cambios de posición. El tiempo se comienza a medir desde la primera vez que presiona “play” y se detiene cuando el estudiante cambia de recurso en la plataforma, cuando el video termina o cuando el estudiante termina su sesión de estudio.')}</p>
         </div>
-
+        ${chart_bodies['dedicacion-tipo-actividad'] | n}
     </section>
 
     <section class="chart-panel" id="panel-participacion-semanal">
@@ -35,7 +52,7 @@
             <p>${_('Este gráfico muestra el porcentaje de estudiantes que han tenido actividad cada semana en la plataforma EOL, específicamente en el curso que se está revisando.')}</p>
             <p>${_('Las barras representan la mediana de los minutos de conexión de las y los estudiantes, incluyendo a aquellos sin actividad.')}</p>
         </div>
-
+        ${chart_bodies['participacion-semanal'] | n}
     </section>
 
 </div>

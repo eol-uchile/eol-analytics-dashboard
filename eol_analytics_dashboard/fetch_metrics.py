@@ -52,6 +52,27 @@ def get_api_cumulative_time(course_id):
         logger.exception("ERROR API (cumulative time): %s", str(e))
         return {}
 
+# TODO: ADD REAL ENDPOINT 
+def get_api_weekly_dedication(course_id):
+    url = "{}/metrics/overview/time/{}/".format(get_base_url(), quote(six.text_type(course_id), safe=""))
+    try:
+        response = requests.get(url, headers=get_api_headers(), timeout=15)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        logger.exception("ERROR API (cumulative time): %s", str(e))
+        return {}
+
+def get_api_section_dedication(course_id):
+    url = "{}/metrics/overview/time/{}/".format(get_base_url(), quote(six.text_type(course_id), safe=""))
+    try:
+        response = requests.get(url, headers=get_api_headers(), timeout=15)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        logger.exception("ERROR API (cumulative time): %s", str(e))
+        return {}
+
 
 
 

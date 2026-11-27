@@ -22,7 +22,9 @@ from xmodule.modulestore.django import modulestore
 from .fetch_metrics import (
     get_api_cumulative_completion,
     get_api_cumulative_time,
-    check_api_availability,
+    get_api_weekly_dedication,
+    get_api_section_dedication,
+    check_api_availability
 )
 
 logger = logging.getLogger(__name__)
@@ -55,7 +57,9 @@ class EolAnalyticsDashboardFragmentView(EdxFragmentView):
 
         general_data_cumulative_completion = get_api_cumulative_completion(course_id)
         general_data_cumulative_time = get_api_cumulative_time(course_id)
-
+        weekly_dedication_data = get_api_weekly_dedication(course_id)
+        section_dedication_data = get_api_section_dedication(course_id)
+        
         # TODO: create manual loading
 
         context = {
@@ -64,7 +68,9 @@ class EolAnalyticsDashboardFragmentView(EdxFragmentView):
             "content": None,
             "max_unit": None,
             "cumulative_completion_data": general_data_cumulative_completion,
-            "cumulative_time_data": general_data_cumulative_time
+            "cumulative_time_data": general_data_cumulative_time,
+            "weekly_dedication_data": weekly_dedication_data,
+            "section_dedication_data": section_dedication_data 
         }
 
         CHART_IDS = [

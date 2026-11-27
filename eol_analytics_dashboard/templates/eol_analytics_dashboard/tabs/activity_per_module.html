@@ -1,5 +1,22 @@
 ## mako
-<%! from django.utils.translation import ugettext as _ %>
+<%!
+    from django.utils.translation import ugettext as _
+    from openedx.core.djangolib.js_utils import dump_js_escaped_json
+%>
+<%namespace name='static' file='/static_content.html'/>
+<%
+    ## Data for the box plot "Dedicación por sección" ({"weeks": [...]}).
+    ## It comes from the Django view context: section_dedication_data
+    activity_per_module_config = {
+        'sectionDedicationData': context.get('section_dedication_data', None),
+    }
+%>
+## JSON block read by js/tabs/activity_per_module.js. The script URLs go in data attributes
+## because static.url() must be used as an expression (${...}), not inside a python block.
+<script type="application/json" id="activity_per_module_config"
+        data-d3-src="https://cdn.jsdelivr.net/npm/d3@7.9/dist/d3.min.js"
+        data-chart-data-src="${static.url('eol_analytics_dashboard/js/charts/chart_data_source.js')}"
+        data-box-plot-src="${static.url('eol_analytics_dashboard/js/charts/box_plot_chart.js')}">${activity_per_module_config | n, dump_js_escaped_json}</script>
 <header class="tab-header">
     <h2 class="tab-title">${_('Actividad por módulo')}</h2>
 </header>
@@ -13,7 +30,7 @@
         <div class="chart-description">
             <p>${_('El gráfico muestra la distribución del tiempo dedicado (en horas) por las y los estudiantes en cada sección del curso, independientemente del momento en que hayan accedido a ella. Los módulos pueden usarse como filtro para ver el gráfico 3.2.')}</p>
         </div>
-
+        ${chart_bodies['dedicacion-seccion'] | n}
     </section>
 
     <section class="chart-panel" id="panel-dedicacion-calificaciones-subseccion">
@@ -24,7 +41,7 @@
             <p>${_('Este gráfico muestra, en la parte superior, el tiempo dedicado (en minutos) por las y los estudiantes a cada subsección del curso. En la esquina superior izquierda puede filtrarse el gráfico para visualizar los módulos individualmente; de igual forma, se puede hacer doble clic en un módulo del gráfico 3.1 para lograr el mismo efecto.')}</p>
             <p>${_('La parte inferior del gráfico muestra el promedio de calificación obtenido por los estudiantes en cada subsección evaluada, incluyendo el total de estudiantes (incluso a quienes no rindieron esa evaluación). Al posicionar el cursor sobre cada barra se puede ver la tasa de respuesta que tuvo cada evaluación; esto también se refleja en el color de las barras: las de menor tasa de respuesta son más claras.')}</p>
         </div>
-
+        ${chart_bodies['dedicacion-calificaciones-subseccion'] | n}
     </section>
 
 </div>
