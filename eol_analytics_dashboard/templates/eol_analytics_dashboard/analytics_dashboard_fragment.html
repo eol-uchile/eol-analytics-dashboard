@@ -2,7 +2,7 @@
 <%! from django.utils.translation import ugettext as _ %>
 <%namespace name='static' file='/static_content.html'/>
 <%block name="bodyclass">view-in-course</%block>
-<%block name="pagetitle">${_('Analtica')}</%block>
+<%block name="pagetitle">${_('Analítica')}</%block>
 <%inherit file="/main.html" />
 
 <%block name="headextra">
@@ -13,6 +13,10 @@
 
 <%include file="/courseware/course_navigation.html" args="active_page='eol_analytics_dashboard'" />
 
+<%
+    ## Endpoint URLs per tab, passed by the Django view (empty string = no endpoint yet).
+    data_urls = context.get('data_urls', {})
+%>
 
 <main id="main" aria-label="Content" tabindex="-1">
     <h2 class="hd hd-2 mt-0">${_('Analítica')}</h2>
@@ -54,37 +58,37 @@
         </div>
 
         <section class="eol-tab-panel" role="tabpanel"
-                id="tabpanel-general_monitoring"
-                aria-labelledby="tab-general_monitoring"
-                data-tab="general_monitoring"
-
+                 id="tabpanel-general_monitoring"
+                 aria-labelledby="tab-general_monitoring"
+                 data-tab="general_monitoring"
+                 data-endpoint="${data_urls.get('general_monitoring', '')}">
             ${ general_monitoring_fragment | n }
         </section>
 
         <section class="eol-tab-panel" role="tabpanel"
-                id="tabpanel-activity_per_week"
-                aria-labelledby="tab-activity_per_week"
-                data-tab="activity_per_week"
-
-                hidden>
+                 id="tabpanel-activity_per_week"
+                 aria-labelledby="tab-activity_per_week"
+                 data-tab="activity_per_week"
+                 data-endpoint="${data_urls.get('activity_per_week', '')}"
+                 hidden>
             ${ activity_per_week_fragment | n }
         </section>
 
         <section class="eol-tab-panel" role="tabpanel"
-                id="tabpanel-activity_per_module"
-                aria-labelledby="tab-activity_per_module"
-                data-tab="activity_per_module"
-
-                hidden>
+                 id="tabpanel-activity_per_module"
+                 aria-labelledby="tab-activity_per_module"
+                 data-tab="activity_per_module"
+                 data-endpoint="${data_urls.get('activity_per_module', '')}"
+                 hidden>
             ${ activity_per_module_fragment | n }
         </section>
 
         <section class="eol-tab-panel" role="tabpanel"
-                id="tabpanel-videos"
-                aria-labelledby="tab-videos"
-                data-tab="videos"
-
-                hidden>
+                 id="tabpanel-videos"
+                 aria-labelledby="tab-videos"
+                 data-tab="videos"
+                 data-endpoint="${data_urls.get('videos', '')}"
+                 hidden>
             ${ videos_fragment | n }
         </section>
     </div>

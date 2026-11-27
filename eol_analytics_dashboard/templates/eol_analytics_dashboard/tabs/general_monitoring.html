@@ -1,5 +1,26 @@
 ## mako
-<%! from django.utils.translation import ugettext as _ %>
+<%!
+    from django.utils.translation import ugettext as _
+    from openedx.core.djangolib.js_utils import dump_js_escaped_json
+%>
+<%namespace name='static' file='/static_content.html'/>
+<%
+    ## Settings for the "Tiempo acumulado" box plot. They come from the Django view context:
+    ##   course_id, use_api, api_url, cumulative_time_data
+    course_id = context.get('course_id', '')
+    general_monitoring_config = {
+        'apiUrl': context.get('api_url', ''),
+        'cumulativeTimeData': context.get('cumulative_time_data', None),
+        'cumulativeCompletionData': context.get('cumulative_completion_data', None),
+    }
+%>
+## JSON block read by js/tabs/monitoreo_general.js. The script URLs go in data attributes
+## because static.url() must be used as an expression (${...}), not inside a python block.
+<script type="application/json" id="general_monitoring_config"
+        data-d3-src="https://cdn.jsdelivr.net/npm/d3@7.9/dist/d3.min.js"
+        data-chart-data-src="${static.url('eol_analytics_dashboard/js/charts/chart_data_source.js')}"
+        data-box-plot-src="${static.url('eol_analytics_dashboard/js/charts/box_plot_chart.js')}">${general_monitoring_config | n, dump_js_escaped_json}</script>
+
 <header class="tab-header">
     <h2 class="tab-title">${_('Monitoreo general')}</h2>
     <div class="tab-intro">
@@ -24,7 +45,7 @@
             </ul>
             <p>${_('El porcentaje se calcula semana a semana sobre el total de materiales del curso, pudiendo haber semanas con mayor o menor cantidad de actividades.')}</p>
         </div>
-
+        ${chart_bodies['completitud-acumulada'] | n}
     </section>
 
     <section class="chart-panel" id="panel-tiempo-acumulado">
@@ -32,9 +53,9 @@
             <h3 class="chart-title">${_('Tiempo acumulado')}</h3>
         </div>
         <div class="chart-description">
-            <p>${_('Este gráfico muestra el número de horas que los estudiantes han interactuado con la plataforma EOL, calculado como la suma del tiempo de las sesiones de estudio. La duración de estas sesiones corresponde al tiempo invertido en actividades consecutivas que no se distancian por más de 60 minutos entre sí. Cada docente debe interpretar esta información de acuerdo con cómo haya diseñado el curso en primera instancia, y verificar si el comportamiento de los estudiantes es similar a lo esperado o requiere una revisión.')}</p>
+            <p>${_('Este gráfico muestra el número de horas que los estudiantes han interactuado con la plataforma EOL, calculado como la suma del tiempo de las sesiones de estudio. La duración de estas sesiones corresponde al tiempo invertido en actividades consecutivas que no se distancian por más de 60 minutos entre sí. Cada docente debe interpretar esta información de acuerdo con cómo haya diseñado el curso en primera instancia, y verificar si el comportamiento de los estudiantes es similar a lo esperado o requiere una revisión')}</p>
         </div>
-
+        ${chart_bodies['tiempo-acumulado'] | n}
     </section>
 
 </div>

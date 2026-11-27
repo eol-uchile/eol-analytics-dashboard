@@ -1,0 +1,18 @@
+## mako
+<%page args="chart_id"/>
+<%! from django.utils.translation import ugettext as _ %>
+## Chart container and its states. The JS changes the data state: loading | ready | empty | error.
+<div class="chart-scroll-wrap" id="${chart_id}-chart-wrapper" data-state="loading" aria-busy="true">
+    <div class="chart-status chart-status-loading" role="status">
+        <span class="chart-spinner" aria-hidden="true"></span>
+        <span>${_('Cargando...')}</span>
+    </div>
+    <div class="chart-status chart-status-empty">
+        <span>${_('Los datos de este gráfico aún no están disponibles.')}</span>
+    </div>
+    <div class="chart-status chart-status-error" role="alert">
+        <span>${_('No se pudieron cargar los datos.')}</span>
+        <button type="button" class="chart-retry">${_('Reintentar')}</button>
+    </div>
+    <div id="${chart_id}-chart"></div>
+</div>
