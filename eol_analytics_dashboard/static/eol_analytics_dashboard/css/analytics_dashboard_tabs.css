@@ -1,0 +1,96 @@
+:root {
+    --analytics-primary-color: #0075b4;
+}
+
+/* Tabs */
+
+.eol-dashboard {
+    padding: 1rem 0 2rem;
+}
+
+.eol-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e3e3e3;
+}
+
+.button .eol-tab-btn {
+    box-shadow: none;
+    background-color: inherit;
+    background-image: inherit;   
+}
+
+.eol-tab-btn {
+    margin-bottom: -2px;
+    padding: 0.6rem 1.1rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    background: transparent none;
+    box-shadow: none;
+    background-color: inherit;
+    background-image: inherit;
+    box-shadow: none;
+    text-shadow: none;
+    color: #555;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.eol-tab-btn:hover {
+    border-bottom-color: var(--primary-color, var(--analytics-primary-color));
+    color: var(--primary-color, var(--analytics-primary-color));
+    background: transparent none;
+    box-shadow: none !important;
+    background-color: inherit;
+    background-image: inherit;
+    text-shadow: none;
+}
+
+.eol-tab-btn.active {
+    border-bottom-color: var(--primary-color, var(--analytics-primary-color));
+    color: var(--primary-color, var(--analytics-primary-color));
+    background: transparent none;
+    box-shadow: none !important;
+    background-color: inherit;
+    background-image: inherit;
+    text-shadow: none;
+}
+
+.eol-tab-btn:focus-visible {
+    outline: 2px solid var(--primary-color, var(--analytics-primary-color));
+    outline-offset: 2px;
+}
+
+.eol-tab-panel[hidden] {
+    display: none;
+}
+
+/* Tabs Headers */
+.tab-header {
+    margin-bottom: 1.5rem;
+}
+
+.tab-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+}
+
+.tab-intro {
+    color: #333;
+    line-height: 1.5;
+}
+
+.tab-intro p {
+    margin: 0 0 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .eol-tab-btn {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.9em;
+    }
+}
