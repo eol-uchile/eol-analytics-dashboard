@@ -17,6 +17,8 @@ setuptools.setup(
             "static/eol_analytics_dashboard/css/*.css",
             "static/eol_analytics_dashboard/js/*.js",
             "static/eol_analytics_dashboard/js/tabs/*.js",
+            "static/eol_analytics_dashboard/js/charts/*.js",
+            "static/eol_analytics_dashboard/js/utils/*.js",
         ],
     },
     classifiers=[
