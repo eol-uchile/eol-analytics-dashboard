@@ -7,3 +7,5 @@ def plugin_settings(settings):
     settings.EOL_ANALYTICS_API_URL = ''
     # Token to access the eol_analytics API service
     settings.EOL_ANALYTICS_API_TOKEN = ''
+    # Use local or API info
+    settings.USE_API = True

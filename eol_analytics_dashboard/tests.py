@@ -2,7 +2,7 @@
 from django.test import TestCase
 
 
-class TestEolLearnerProfiles(TestCase):
+class TestEolAnalyticsDashboard(TestCase):
     def test_smoke(self):
         """
             Minimal test to trigger the CI workflow.

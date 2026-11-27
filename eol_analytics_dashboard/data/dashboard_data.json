@@ -1,0 +1,92 @@
+{
+  "courses": [
+    {
+      "course_id": "COURSE_001",
+      "weeks": [
+        {
+          "week": "01-02-2026",
+          "order": 1,
+          "chart_data": [
+            {
+              "minimum": 10,
+              "first_quartile": 20,
+              "median": 30,
+              "third_quartile": 40,
+              "maximum": 50
+            }
+          ]
+        },
+        {
+          "week": "08-02-2026",
+          "order": 2,
+          "chart_data": [
+            {
+              "minimum": 12,
+              "first_quartile": 22,
+              "median": 32,
+              "third_quartile": 42,
+              "maximum": 52
+            }
+          ]
+        },
+        {
+          "week": "15-02-2026",
+          "order": 3,
+          "chart_data": [
+            {
+              "minimum": 14,
+              "first_quartile": 24,
+              "median": 34,
+              "third_quartile": 44,
+              "maximum": 54
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "course_id": "COURSE_002",
+      "weeks": [
+        {
+          "week": "01-01-2026",
+          "order": 1,
+          "chart_data": [
+            {
+              "minimum": 5,
+              "first_quartile": 15,
+              "median": 25,
+              "third_quartile": 35,
+              "maximum": 45
+            }
+          ]
+        },
+        {
+          "week":  "08-01-2026",
+          "order": 2,
+          "chart_data": [
+            {
+              "minimum": 10,
+              "first_quartile": 20,
+              "median": 30,
+              "third_quartile": 40,
+              "maximum": 50
+            }
+          ]
+        },
+        {
+          "week":  "15-01-2026",
+          "order": 3,
+          "chart_data": [
+            {
+              "minimum": 15,
+              "first_quartile": 25,
+              "median": 35,
+              "third_quartile": 45,
+              "maximum": 55
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
